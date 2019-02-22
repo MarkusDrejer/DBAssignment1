@@ -83,11 +83,15 @@ public class consoleColors {
         return this;
     }
 
-    public consoleColors printTxtBlue (String txt) {
+    public consoleColors printTxtBlue(String txt) {
         txtToPrint.append(ANSI_BLUE + txt + ANSI_RESET);
         return this;
     }
 
+    public consoleColors printTxtPurple(String txt) {
+        txtToPrint.append(ANSI_PURPLE + txt + ANSI_RESET);
+        return this;
+    }
 
     public consoleColors printTxtYellow(String txt) {
         txtToPrint.append(ANSI_YELLOW + txt + ANSI_RESET);
