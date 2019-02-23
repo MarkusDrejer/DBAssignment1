@@ -5,6 +5,7 @@ public class UserInterface {
     Scanner console = new Scanner(System.in);
     consoleColors cc = new consoleColors();
     InputCheck ic = new InputCheck();
+    DB db = new DB();
 
     public UserInterface(){
 
@@ -26,7 +27,7 @@ public class UserInterface {
             } else {
                 switch (userInput.charAt(0)) {
                     case '1':
-                        select();
+                       db.selectProducts();
                         break;
                     case '2':
                         update();
@@ -35,7 +36,13 @@ public class UserInterface {
                         delete();
                         break;
                     case '4':
-                        insert();
+                        System.out.println("Product Name:");
+                        String productName = console.next();
+                        System.out.println("Product Location:");
+                        String productLocation = console.next();
+                        System.out.println("Product Price:");
+                        int productPrice = console.nextInt();
+                        db.insertProduct(productName, productLocation, productPrice);
                         break;
                 }
             }
