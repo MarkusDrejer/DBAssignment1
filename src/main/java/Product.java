@@ -35,4 +35,11 @@ public class Product {
     public void setProduct_price(int product_price) {
         Product_price = product_price;
     }
+
+    public String toString(){
+        return "ID: " + Pid + " " +
+                "Name: " + Product_name + " " +
+                "Price: " + Product_price + " " +
+                "Location: " + Product_location + "\n";
+    }
 }

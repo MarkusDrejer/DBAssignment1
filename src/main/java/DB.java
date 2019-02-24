@@ -33,23 +33,23 @@ public class DB {
                 productList.add(tmp);
             }
 
+            stmt.close();
+
         } catch (SQLException e){
             e.printStackTrace();
         }
 
-        // til testing
-        for (Product a: productList) {
-            System.out.println(a.getProduct_name());
-        }
         return productList;
     }
 
     public void insertProduct(String name, String location, int price) {
-        String sql = "INSERT INTO products (Product_name, Product_location, Product_price) VALUES ('"+ name +"','"+ location +"',"+ price +")";
+        String sql = "INSERT INTO products (Product_name, Product_location, Product_price) " +
+                "VALUES ('"+ name +"','"+ location +"',"+ price +")";
 
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sql);
+            stmt.close();
         } catch (SQLException e){
             e.printStackTrace();
         }

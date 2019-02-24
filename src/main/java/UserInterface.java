@@ -5,7 +5,7 @@ public class UserInterface {
     Scanner console = new Scanner(System.in);
     consoleColors cc = new consoleColors();
     InputCheck ic = new InputCheck();
-    DB db = new DB();
+    //DB db = new DB();
 
     public UserInterface(){
 
@@ -13,21 +13,23 @@ public class UserInterface {
 
         while(!userInput.equals("/quit")) {
 
-            System.out.println("Welcome, please choose: ");
+            System.out.println("Welcome to the Database program");
             cc.printTxtBlue("1. Select data\n")
                     .printTxtYellow("2. Update data\n")
                     .printTxtRed("3. Delete data\n")
-                    .printTxtPurple("4. Insert data")
+                    .printTxtPurple("4. Insert data\n")
                     .print(true);
 
+            System.out.print("Please choose: ");
             userInput = console.next();
+            cc.clearTxtBuffer();
 
             if(userInput.length() > 1){                 //Not perfect check condition
                 System.out.println("Invalid Input");
             } else {
                 switch (userInput.charAt(0)) {
                     case '1':
-                       db.selectProducts();
+                        cc.printTxtBlue("\n\n" + ic.selectLogic2().toString()).print(true);
                         break;
                     case '2':
                         update();
@@ -42,16 +44,12 @@ public class UserInterface {
                         String productLocation = console.next();
                         System.out.println("Product Price:");
                         int productPrice = console.nextInt();
-                        db.insertProduct(productName, productLocation, productPrice);
+                        //db.insertProduct(productName, productLocation, productPrice);
                         break;
                 }
             }
             cc.clearTxtBuffer();
         }
-    }
-
-    private void select(){
-
     }
 
     private void update(){
