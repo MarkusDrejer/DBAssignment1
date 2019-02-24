@@ -26,7 +26,7 @@ public class UserInterface {
 
                 switch (userInput.charAt(0)) {
                     case '1':
-                        cc.printTxtBlue("\n\n" + sl.selectRetrieve().toString()).print(true);
+                        cc.printTxtBlue("\n\n" + sl.selectRetrieve()).print(true);
                         break;
                     case '2':
                         update();
@@ -62,6 +62,9 @@ public class UserInterface {
 
     private void delete(){
 
+        System.out.println("\n\n" + sl.selectRetrieve());
+        cc.printTxtRed("\nPlease select the item you want to delete by choosing its Id").print(false);
+        int itemIDInput = console.nextInt();
 
         //ONLY FOR TESTING
         /*DB db = new DB();
