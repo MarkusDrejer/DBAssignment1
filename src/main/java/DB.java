@@ -4,7 +4,7 @@ import java.util.List;
 
 public class DB {
 
-    Connection con;
+    private Connection con;
 
     public DB(){
         try {
@@ -18,6 +18,7 @@ public class DB {
 
     public List<Product> selectProducts(){
         List<Product> productList = new ArrayList<Product>();
+
         String sql_Select = "SELECT * FROM products";
 
         try {
@@ -42,9 +43,9 @@ public class DB {
         return productList;
     }
 
-    public void insertProduct(String name, String location, int price) {
-        String sql = "INSERT INTO products (Product_name, Product_location, Product_price) " +
-                "VALUES ('"+ name +"','"+ location +"',"+ price +")";
+    public void insertProduct(String name, int price, String location) {
+        String sql = "INSERT INTO products (Product_name, Product_price, Product_location) " +
+                "VALUES ('"+ name +"',"+ price +",'"+ location +"')";
 
         try {
             Statement stmt = con.createStatement();
@@ -55,3 +56,8 @@ public class DB {
         }
     }
 }
+
+
+
+
+            // JOptionPane.showMessageDialog(null, ""); // Potential error for exceptions //

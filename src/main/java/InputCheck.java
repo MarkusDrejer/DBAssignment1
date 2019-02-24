@@ -2,6 +2,18 @@ public class InputCheck {
 
     DB db = new DB();
 
+    public boolean insertIntoDB(String productName, int productPrice, String productLocation){
+        if(stringCheck(productName) ||
+                productPrice < 0 ||
+                productPrice > 1000 ||
+                stringCheck(productLocation)) {
+            return false;
+        } else {
+            db.insertProduct(productName, productPrice, productLocation);
+            return true;
+        }
+    }
+
     public boolean stringCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
                 "[~#@*+%{}<>\\[\\]|\"\\_^]", "").length();
