@@ -63,7 +63,7 @@ public class UserInterface {
     private void delete(){
 
         System.out.println("\n\n" + sl.selectRetrieve());
-        cc.printTxtRed("\nPlease select the item you want to delete by choosing its Id").print(false);
+        cc.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
         int itemIDInput = console.nextInt();
 
         //ONLY FOR TESTING
