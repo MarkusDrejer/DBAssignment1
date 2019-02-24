@@ -1,6 +1,6 @@
 public class SelectLogic {
 
-    DB db = new DB();
+    private DB db = new DB();
 
     public StringBuilder selectRetrieve(){
         StringBuilder result = new StringBuilder();

@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    Scanner console = new Scanner(System.in);
-    consoleColors cc = new consoleColors();
-    InputLogic inputs = new InputLogic();
-    SelectLogic sl = new SelectLogic();
+    private Scanner console = new Scanner(System.in);
+    private consoleColors color = new consoleColors();
+    private InputLogic inputs = new InputLogic();
+    private SelectLogic sl = new SelectLogic();
 
     public UserInterface(){
 
@@ -14,7 +14,7 @@ public class UserInterface {
         while(!userInput.equals("/quit")) {
 
             System.out.println("Welcome to the Database program");
-            cc.printTxtBlue("1. Select data\n")
+            color.printTxtBlue("1. Select data\n")
                     .printTxtYellow("2. Update data\n")
                     .printTxtRed("3. Delete data\n")
                     .printTxtPurple("4. Insert data\n")
@@ -22,11 +22,11 @@ public class UserInterface {
 
             System.out.print("Please choose: ");
             userInput = console.next();
-            cc.clearTxtBuffer();
+            color.clearTxtBuffer();
 
                 switch (userInput.charAt(0)) {
                     case '1':
-                        cc.printTxtBlue("\n\n" + sl.selectRetrieve()).print(true);
+                        color.printTxtBlue("\n\n" + sl.selectRetrieve()).print(true);
                         break;
                     case '2':
                         update();
@@ -39,7 +39,7 @@ public class UserInterface {
                         break;
                 }
             System.out.println();
-            cc.clearTxtBuffer();
+            color.clearTxtBuffer();
             }
     }
 
@@ -62,43 +62,43 @@ public class UserInterface {
 
     private void delete(){
         System.out.println("\n\n" + sl.selectRetrieve());
-        cc.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
-        cc.clearTxtBuffer();
+        color.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
+        color.clearTxtBuffer();
 
         int itemIDInput = console.nextInt();
 
         if(sl.deleteChoice(itemIDInput)){
-            cc.printTxtRed("Successfully deleted item").print(true);
+            color.printTxtRed("Sucoloressfully deleted item").print(true);
         } else {
-            cc.printTxtRed("Item Id does not exist").print(true);
+            color.printTxtRed("Item Id does not exist").print(true);
         }
-        cc.clearTxtBuffer();
+        color.clearTxtBuffer();
     }
 
     private void insert(){
-        cc.printTxtPurple("\nProduct Name: ").print(false);
+        color.printTxtPurple("\nProduct Name: ").print(false);
         String nameInput = console.next();
-        cc.clearTxtBuffer();
+        color.clearTxtBuffer();
         if(inputs.nameCheck(nameInput)){
             System.out.println("Name contains Illegal characters\n");
             insert();
             return;
         }
 
-        cc.printTxtPurple("Product Price (0-1000): ").print(false);
+        color.printTxtPurple("Product Price (0-1000): ").print(false);
         int priceInput = console.nextInt();
-        cc.clearTxtBuffer();
+        color.clearTxtBuffer();
 
-        cc.printTxtPurple("Product Warehouse (1, 2 or 3): ").print(false);
+        color.printTxtPurple("Product Warehouse (1, 2 or 3): ").print(false);
         int locationInput = console.nextInt();
-        cc.clearTxtBuffer();
+        color.clearTxtBuffer();
 
-        cc.printTxtPurple("Product Shelf (0-1000): ").print(false);
+        color.printTxtPurple("Product Shelf (0-1000): ").print(false);
         int shelfInput = console.nextInt();
-        cc.clearTxtBuffer();
+        color.clearTxtBuffer();
 
         if(inputs.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
-            System.out.println("Successfully inserted item");
+            System.out.println("Sucoloressfully inserted item");
         } else {
             System.out.println("Failed to insert item, please choose within the range of the numbers specified");
         }

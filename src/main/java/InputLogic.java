@@ -1,6 +1,6 @@
 public class InputLogic {
 
-    DB db = new DB();
+    private DB db = new DB();
 
     public boolean insertIntoDB(String productName, int productPrice, int productLocation, int shelfLocation){
         if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation)) {
