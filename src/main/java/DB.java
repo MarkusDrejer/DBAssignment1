@@ -42,21 +42,43 @@ public class DB {
         return productList;
     }
 
+    public void updateProduct(String name, int price, String location, int itemID){
+        String sql_Update = "UPDATE products " +
+                "SET Product_name = '" + name + "', Product_price = " + price + ", Product_location = '" + location + "' " +
+                "WHERE Pid = " + itemID;
+
+        try {
+            Statement stmt = con.createStatement();
+            stmt.execute(sql_Update);
+            stmt.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteProduct(int itemID){
+        String sql_Delete = "DELETE FROM products " +
+                "WHERE Pid = " + itemID;
+
+        try {
+            Statement stmt = con.createStatement();
+            stmt.execute(sql_Delete);
+            stmt.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void insertProduct(String name, int price, String location) {
-        String sql = "INSERT INTO products (Product_name, Product_price, Product_location) " +
+        String sql_Input = "INSERT INTO products (Product_name, Product_price, Product_location) " +
                 "VALUES ('"+ name +"',"+ price +",'"+ location +"')";
 
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate(sql);
+            stmt.execute(sql_Input);
             stmt.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
 }
-
-
-
-
-            // JOptionPane.showMessageDialog(null, ""); // Potential error for exceptions //

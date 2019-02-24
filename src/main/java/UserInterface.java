@@ -45,9 +45,29 @@ public class UserInterface {
 
     private void update(){
 
+
+        //ONLY FOR TESTING
+        /*DB db = new DB();
+        System.out.println("Name");
+        String name = console.next();
+        System.out.println("Price");
+        int price = console.nextInt();
+        console.nextLine();
+        System.out.println("Location");
+        String loc = console.nextLine();
+        System.out.println("Item ID");
+        int itemID = console.nextInt();
+        db.updateProduct(name, price, loc, itemID);*/
     }
 
     private void delete(){
+
+
+        //ONLY FOR TESTING
+        /*DB db = new DB();
+        System.out.println("ItemID");
+        int itemID = console.nextInt();
+        db.deleteProduct(itemID);*/
 
     }
 
