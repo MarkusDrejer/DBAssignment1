@@ -98,6 +98,11 @@ public class consoleColors {
         return this;
     }
 
+    public consoleColors printTxtBlack(String txt){
+        txtToPrint.append(ANSI_BLACK + txt + ANSI_RESET);
+        return this;
+    }
+
     public consoleColors printTxtUnderline(String txt) {
         txtToPrint.append(ANSI_UNDERLINE + txt + ANSI_RESET);
         return this;
