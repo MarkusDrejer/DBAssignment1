@@ -17,4 +17,15 @@ public class SelectLogic {
         }
         return result;
     }
+
+    public boolean deleteChoice(int itemID){
+        int[] idList = db.allIds();
+        for(int i = 0; i < idList.length; i++){
+            if(itemID == idList[i]){
+                db.deleteProduct(itemID);
+                return true;
+            }
+        }
+        return false;
+    }
 }

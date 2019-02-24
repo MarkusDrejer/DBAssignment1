@@ -15,7 +15,7 @@ public class InputLogic {
 
     public boolean nameCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
-                "[~#@*+%{}<>\\[\\]|\"\\_^]", "").length();
+                "[~'#@*+%{}<>\\[\\]|\"\\_^]", "").length();
     }
 
     private boolean price_shelfCheck(int toExamine){

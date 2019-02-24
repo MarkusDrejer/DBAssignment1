@@ -4,7 +4,7 @@ public class UserInterface {
 
     Scanner console = new Scanner(System.in);
     consoleColors cc = new consoleColors();
-    InputLogic il = new InputLogic();
+    InputLogic inputs = new InputLogic();
     SelectLogic sl = new SelectLogic();
 
     public UserInterface(){
@@ -61,24 +61,25 @@ public class UserInterface {
     }
 
     private void delete(){
-
         System.out.println("\n\n" + sl.selectRetrieve());
         cc.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
+        cc.clearTxtBuffer();
+
         int itemIDInput = console.nextInt();
 
-        //ONLY FOR TESTING
-        /*DB db = new DB();
-        System.out.println("ItemID");
-        int itemID = console.nextInt();
-        db.deleteProduct(itemID);*/
-
+        if(sl.deleteChoice(itemIDInput)){
+            cc.printTxtRed("Successfully deleted item").print(true);
+        } else {
+            cc.printTxtRed("Item Id does not exist").print(true);
+        }
+        cc.clearTxtBuffer();
     }
 
     private void insert(){
         cc.printTxtPurple("\nProduct Name: ").print(false);
         String nameInput = console.next();
         cc.clearTxtBuffer();
-        if(il.nameCheck(nameInput)){
+        if(inputs.nameCheck(nameInput)){
             System.out.println("Name contains Illegal characters\n");
             insert();
             return;
@@ -96,7 +97,7 @@ public class UserInterface {
         int shelfInput = console.nextInt();
         cc.clearTxtBuffer();
 
-        if(il.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
+        if(inputs.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
             System.out.println("Successfully inserted item");
         } else {
             System.out.println("Failed to insert item, please choose within the range of the numbers specified");
