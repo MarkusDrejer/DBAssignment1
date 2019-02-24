@@ -3,8 +3,7 @@ public class InputLogic {
     DB db = new DB();
 
     public boolean insertIntoDB(String productName, int productPrice, int productLocation, int shelfLocation){
-        if(nameCheck(productName) || numberCheck(productPrice) ||
-                locationCheck(productLocation) || numberCheck(shelfLocation)) {
+        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation)) {
             return false;
         } else {
             String dbLocation = "L:0" + productLocation;
@@ -14,12 +13,12 @@ public class InputLogic {
         }
     }
 
-    private boolean nameCheck(String toExamine){
+    public boolean nameCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
                 "[~#@*+%{}<>\\[\\]|\"\\_^]", "").length();
     }
 
-    private boolean numberCheck(int toExamine){
+    private boolean price_shelfCheck(int toExamine){
         return toExamine < 0 || toExamine > 1000;
     }
 

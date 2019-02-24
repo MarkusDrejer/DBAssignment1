@@ -52,9 +52,14 @@ public class UserInterface {
     }
 
     private void insert(){
-        cc.printTxtPurple("Product Name: ").print(false);
+        cc.printTxtPurple("\nProduct Name: ").print(false);
         String nameInput = console.next();
         cc.clearTxtBuffer();
+        if(il.nameCheck(nameInput)){
+            System.out.println("Name contains Illegal characters\n");
+            insert();
+            return;
+        }
 
         cc.printTxtPurple("Product Price (0-1000): ").print(false);
         int priceInput = console.nextInt();
@@ -71,7 +76,7 @@ public class UserInterface {
         if(il.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
             System.out.println("Successfully inserted item");
         } else {
-            System.out.println("Failed to insert item, illegal characters included");
+            System.out.println("Failed to insert item, please choose within the range of the numbers specified");
         }
     }
 }
