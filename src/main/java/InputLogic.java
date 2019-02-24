@@ -13,6 +13,17 @@ public class InputLogic {
         }
     }
 
+    public boolean insertIntoDB(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
+        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation)) {
+            return false;
+        } else {
+            String dbLocation = "L:0" + productLocation;
+            dbLocation += " S:" +shelfLocation;
+            db.updateProduct(productName, productPrice, dbLocation, itemID);
+            return true;
+        }
+    }
+
     public boolean nameCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
                 "[~'#@*+%{}<>\\[\\]|\"\\_^]", "").length();

@@ -44,20 +44,35 @@ public class UserInterface {
     }
 
     private void update(){
+        System.out.println("\n\n" + sl.selectRetrieve());
 
-
-        //ONLY FOR TESTING
-        /*DB db = new DB();
-        System.out.println("Name");
-        String name = console.next();
-        System.out.println("Price");
-        int price = console.nextInt();
-        console.nextLine();
-        System.out.println("Location");
-        String loc = console.nextLine();
-        System.out.println("Item ID");
+        color.printTxtYellow("ID for the product you which to update: ").print(false);
         int itemID = console.nextInt();
-        db.updateProduct(name, price, loc, itemID);*/
+        color.clearTxtBuffer();
+
+        console.nextLine();                 //For empty \n token from nextInt
+
+        color.printTxtYellow("New Product Name: ").print(false);
+        String newName = console.nextLine();
+        color.clearTxtBuffer();
+
+        color.printTxtYellow("New Price (0-1000); ").print(false);
+        int newPrice = console.nextInt();
+        color.clearTxtBuffer();
+
+        color.printTxtYellow("New Location (1-3): ").print(false);
+        int newLocation = console.nextInt();
+        color.clearTxtBuffer();
+
+        color.printTxtYellow("New Shelf (0-1000): ").print(false);
+        int newShelf = console.nextInt();
+        color.clearTxtBuffer();
+
+        if(inputs.insertIntoDB(newName, newPrice, newLocation, newShelf, itemID)){
+            System.out.println("\nSuccessfully updated item\n");
+        } else {
+            System.out.println("\nUnable to update item, Illegal characters included\n");
+        }
     }
 
     private void delete(){
@@ -76,8 +91,10 @@ public class UserInterface {
     }
 
     private void insert(){
+        console.nextLine();                 //For empty \n token from nextInt
+
         color.printTxtPurple("\nProduct Name: ").print(false);
-        String nameInput = console.next();
+        String nameInput = console.nextLine();
         color.clearTxtBuffer();
         if(inputs.nameCheck(nameInput)){
             System.out.println("Name contains Illegal characters\n");
@@ -89,7 +106,7 @@ public class UserInterface {
         int priceInput = console.nextInt();
         color.clearTxtBuffer();
 
-        color.printTxtPurple("Product Warehouse (1, 2 or 3): ").print(false);
+        color.printTxtPurple("Product Location (1-3): ").print(false);
         int locationInput = console.nextInt();
         color.clearTxtBuffer();
 
@@ -98,7 +115,7 @@ public class UserInterface {
         color.clearTxtBuffer();
 
         if(inputs.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
-            System.out.println("Sucoloressfully inserted item");
+            System.out.println("Successfully inserted item");
         } else {
             System.out.println("Failed to insert item, please choose within the range of the numbers specified");
         }
