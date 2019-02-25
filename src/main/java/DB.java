@@ -8,14 +8,13 @@ public class DB {
 
     public DB(){
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://den1.mysql5.gear.host/assignmentdb1", "assignmentdb1", "Ah3vVjoep?!d");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public List<Product> selectProducts(){
+    public List<Product> selectProducts() {
         List<Product> productList = new ArrayList<Product>();
 
         String sql_Select = "SELECT * FROM products";

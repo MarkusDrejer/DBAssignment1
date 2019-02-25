@@ -4,12 +4,11 @@ public class UserInterface {
 
     private Scanner console = new Scanner(System.in);
     private consoleColors color = new consoleColors();
-    private InputLogic inputs = new InputLogic();
-    private SelectLogic sl = new SelectLogic();
+    private Logic inputs = new Logic();
 
     public UserInterface(){
 
-        String userInput = "";                          //Uncertain if input should be of String type
+        String userInput = "";
 
         while(!userInput.equals("/quit")) {
 
@@ -18,24 +17,28 @@ public class UserInterface {
                     .printTxtYellow("2. Update data\n")
                     .printTxtRed("3. Delete data\n")
                     .printTxtPurple("4. Insert data\n")
+                    .printTxtBlack("Type /quit to exit\n")
                     .print(false);
 
             System.out.print("Please choose: ");
             userInput = console.next();
             color.clearTxtBuffer();
 
-                switch (userInput.charAt(0)) {
-                    case '1':
-                        color.printTxtBlue("\n\n" + sl.selectRetrieve()).print(true);
+                switch (userInput) {
+                    case "1":
+                        color.printTxtBlue("\n\n" + inputs.selectRetrieve()).print(true);
                         break;
-                    case '2':
+                    case "2":
                         update();
                         break;
-                    case '3':
+                    case "3":
                         delete();
                         break;
-                    case '4':
+                    case "4":
                         insert();
+                        break;
+                    default:
+                        System.out.println("\nNot a valid input");
                         break;
                 }
             System.out.println();
@@ -44,7 +47,7 @@ public class UserInterface {
     }
 
     private void update(){
-        System.out.println("\n\n" + sl.selectRetrieve());
+        System.out.println("\n\n" + inputs.selectRetrieve());
 
         color.printTxtYellow("ID for the product you which to update: ").print(false);
         int itemID = console.nextInt();
@@ -76,14 +79,14 @@ public class UserInterface {
     }
 
     private void delete(){
-        System.out.println("\n\n" + sl.selectRetrieve());
+        System.out.println("\n\n" + inputs.selectRetrieve());
         color.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
         color.clearTxtBuffer();
 
         int itemIDInput = console.nextInt();
 
-        if(sl.deleteChoice(itemIDInput)){
-            color.printTxtRed("Sucoloressfully deleted item").print(true);
+        if(inputs.deleteChoice(itemIDInput)){
+            color.printTxtRed("Successfully deleted item").print(true);
         } else {
             color.printTxtRed("Item Id does not exist").print(true);
         }

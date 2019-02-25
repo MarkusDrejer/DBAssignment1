@@ -20,22 +20,6 @@ public class Product {
         Product_price = product_price;
     }
 
-    public int getPid() {
-        return Pid;
-    }
-
-    public String getProduct_name() {
-        return Product_name;
-    }
-
-    public String getProduct_location() {
-        return Product_location;
-    }
-
-    public int getProduct_price() {
-        return Product_price;
-    }
-
     public String toString(){
         return "ID: " + Pid + " " +
                 "Name: " + Product_name + " " +
