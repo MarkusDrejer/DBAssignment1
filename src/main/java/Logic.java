@@ -7,14 +7,32 @@ public class Logic {
 
         for(Product tmp : db.selectProducts()){
             char[] modifyResult = tmp.toString().toCharArray();
+            int counter = 0;
 
-            for(int i = 0; i < modifyResult.length; i++){
-                if(modifyResult[i] == ' '){
-                    break;
-                } else{
-                    modifyResult[i] = Character.toUpperCase(modifyResult[i]);
-                }
+            while(modifyResult[counter] != ' '){
+                modifyResult[counter] = Character.toUpperCase(modifyResult[counter]);
+                counter++;
             }
+
+            /*while(modifyResult[counter] != '\n'){
+                if(modifyResult[counter] == ' '){
+                    modifyResult[counter+1] = Character.toUpperCase(modifyResult[counter+1]);
+                } else {
+                    modifyResult[counter+1] = Character.toLowerCase(modifyResult[counter+1]);
+                }
+                counter++;
+            }*/
+
+
+
+            /*for( ; counter < modifyResult[counter]; counter++){
+                if(modifyResult[counter] == ' '){
+                    modifyResult[counter+1] = Character.toUpperCase(modifyResult[counter+1]);
+                } else if(modifyResult[counter] == '\n'){
+                    break;
+                }
+            }*/
+
             result.append(modifyResult);
         }
         return result;
