@@ -6,10 +6,12 @@ public class Logic {
         StringBuilder result = new StringBuilder();
 
         for(Product tmp : db.selectProducts()){
-            char[] modifyResult = tmp.toString().toLowerCase().toCharArray();
+            char[] modifyResult = tmp.toString().toCharArray();
 
             for(int i = 0; i < modifyResult.length; i++){
-                if(i == 0 || modifyResult[i-1] == ' ' || modifyResult[i-1] == '\n'){
+                if(modifyResult[i] == ' '){
+                    break;
+                } else{
                     modifyResult[i] = Character.toUpperCase(modifyResult[i]);
                 }
             }

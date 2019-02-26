@@ -21,9 +21,9 @@ public class Product {
     }
 
     public String toString(){
-        return "ID: " + Pid + " " +
-                "Name: " + Product_name + " " +
-                "Price: " + Product_price + " " +
-                "Location: " + Product_location + "\n";
+        return  Product_name + "\n" +
+                "ID: " + Pid + ", " +
+                "Price: " + Product_price + ", " +
+                "Location: " + Product_location + "\n\n";
     }
 }
