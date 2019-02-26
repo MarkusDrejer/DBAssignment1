@@ -52,6 +52,11 @@ public class UserInterface {
         color.printTxtYellow("Select the Id for the product you wish to update: ").print(false);
         int itemID = console.nextInt();
         color.clearTxtBuffer();
+        if(itemID < 1){
+            System.out.println("Invalid Id");
+            update();
+            return;
+        }
 
         console.nextLine();                 //For empty \n token from nextInt
 
