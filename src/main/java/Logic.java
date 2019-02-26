@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Logic {
 
     private DB db = new DB();
@@ -19,20 +21,17 @@ public class Logic {
         return result;
     }
 
-    public boolean deleteChoice(int itemID){
-        int[] idList = db.allIds();
-        for(int i = 0; i < idList.length; i++){
-            if(itemID == idList[i]){
-                db.deleteProduct(itemID);
-                return true;
-            }
+    public void deleteChoice(int itemID){
+        if(validIds(itemID)){
+            db.deleteProduct(itemID);
+        } else {
+            throw new IllegalArgumentException("Invalid Id");
         }
-        return false;
     }
 
-    public boolean dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
+    public void dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
         if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
-            return false;
+            throw new IllegalArgumentException("Illegal characters");
         } else {
             String dbLocation = "L:0" + productLocation;
             dbLocation += " S:" +shelfLocation;
@@ -42,13 +41,22 @@ public class Logic {
             } else {
                 db.updateProduct(productName, productPrice, dbLocation, itemID);
             }
-            return true;
         }
+    }
+
+    public boolean validIds(int itemID){
+        List<Integer> idList = db.allIds();
+        for(int i = 0; i < idList.size(); i++){
+            if(itemID == idList.get(i)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean nameCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
-                "[~'#@*+%{}<>\\[\\]|\"\\_^]", "").length();
+                "[~'.#@*+%{}<>\\[\\]|\"\\_^]", "").length();
     }
 
     private boolean price_shelfCheck(int toExamine){

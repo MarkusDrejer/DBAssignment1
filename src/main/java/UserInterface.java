@@ -52,7 +52,7 @@ public class UserInterface {
         color.printTxtYellow("Select the Id for the product you wish to update: ").print(false);
         int itemID = console.nextInt();
         color.clearTxtBuffer();
-        if(itemID < 1){
+        if(!inputs.validIds(itemID)){
             System.out.println("Invalid Id");
             update();
             return;
@@ -76,11 +76,13 @@ public class UserInterface {
         int newShelf = console.nextInt();
         color.clearTxtBuffer();
 
-        if(inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID)){
-            System.out.println("\nSuccessfully updated item\n");
-        } else {
-            System.out.println("\nUnable to update item, Illegal characters or invalid values entered\n");
+        try {
+            inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID);
+        } catch(IllegalArgumentException e){
+            color.printTxtYellow(e.getMessage()).print(true);
         }
+
+        color.clearTxtBuffer();
     }
 
     private void delete(){
@@ -90,11 +92,12 @@ public class UserInterface {
 
         int itemIDInput = console.nextInt();
 
-        if(inputs.deleteChoice(itemIDInput)){
-            color.printTxtRed("Successfully deleted item").print(true);
-        } else {
-            color.printTxtRed("Item Id does not exist").print(true);
+        try {
+            inputs.deleteChoice(itemIDInput);
+        } catch (IllegalArgumentException e){
+            color.printTxtRed(e.getMessage()).print(true);
         }
+
         color.clearTxtBuffer();
     }
 
@@ -117,10 +120,12 @@ public class UserInterface {
         int shelfInput = console.nextInt();
         color.clearTxtBuffer();
 
-        if(inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1)){
-            System.out.println("Successfully inserted item");
-        } else {
-            System.out.println("Unable to insert item, Illegal characters or invalid values entered");
+        try {
+            inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
+        } catch(IllegalArgumentException e){
+            color.printTxtPurple(e.getMessage()).print(true);
         }
+
+        color.clearTxtBuffer();
     }
 }

@@ -63,45 +63,29 @@ public class DB {
         statementExecute(sql_Input);
     }
 
-    public int[] allIds(){
+    public List<Integer> allIds(){
         String sql_Ids = "SELECT Pid FROM products";
-        int[] idList = new int[idCount()];
+        List<Integer> idList = new ArrayList<>();
 
         try {
-            int counter = 0;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql_Ids);
 
             while(rs.next()){
-                idList[counter] = rs.getInt("Pid");
-                counter++;
+                idList.add(rs.getInt("Pid"));
             }
             stmt.close();
 
         } catch (SQLException e){
             e.printStackTrace();
         }
+
         return idList;
     }
 
-    private int idCount(){
-        String sql_IdCount = "SELECT COUNT(Pid) FROM products";
-        int ids = 0;
-
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql_IdCount);
-
-            while (rs.next()) {
-                ids = rs.getInt("COUNT(Pid)");
-            }
-            stmt.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return ids;
-    }
-
+    /**
+     * Statement helper method
+     */
     private void statementExecute(String sql){
         try {
             Statement stmt = con.createStatement();
