@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Logic {
@@ -22,48 +23,55 @@ public class Logic {
     }
 
     public void deleteChoice(int itemID){
-        if(validIds(itemID)){
-            db.deleteProduct(itemID);
-        } else {
-            throw new IllegalArgumentException("Invalid Id");
-        }
+        validIds(itemID);
+        db.deleteProduct(itemID);
     }
 
     public void dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
-        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
-            throw new IllegalArgumentException("Illegal characters");
-        } else {
+        nameCheck(productName);
+        price_shelfCheck(productPrice);
+        locationCheck(productLocation);
+        price_shelfCheck(shelfLocation);
+
             String dbLocation = "L:0" + productLocation;
             dbLocation += " S:" +shelfLocation;
 
             if(itemID == -1){
                 db.insertProduct(productName, productPrice, dbLocation);
             } else {
+                validIds(itemID);
                 db.updateProduct(productName, productPrice, dbLocation, itemID);
             }
-        }
     }
 
-    public boolean validIds(int itemID){
+
+
+    private void validIds(int itemID){
         List<Integer> idList = db.allIds();
         for(int i = 0; i < idList.size(); i++){
             if(itemID == idList.get(i)){
-                return true;
+                return;
             }
         }
-        return false;
+        throw new InputMismatchException("Invalid Id");
     }
 
-    private boolean nameCheck(String toExamine){
-        return toExamine.length() != toExamine.replaceAll(
-                "[~'.#@*+%{}<>\\[\\]|\"\\_^]", "").length();
+    private void nameCheck(String toExamine){
+        if(toExamine.length() != toExamine.replaceAll(
+                "[~'.#@*+%{}<>\\[\\]|\"\\_^]", "").length()){
+            throw new InputMismatchException("Illegal Characters");
+        }
     }
 
-    private boolean price_shelfCheck(int toExamine){
-        return toExamine < 0 || toExamine > 1000;
+    private void price_shelfCheck(int toExamine){
+        if(toExamine < 0 || toExamine > 1000){
+            throw new InputMismatchException("Invalid Integer Input");
+        }
     }
 
-    private boolean locationCheck(int toExamine){
-        return toExamine < 1 || toExamine > 3;
+    private void locationCheck(int toExamine){
+        if(toExamine < 1 || toExamine > 3){
+            throw new InputMismatchException("Invalid Integer Input");
+        }
     }
 }

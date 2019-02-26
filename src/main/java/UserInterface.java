@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -52,11 +53,6 @@ public class UserInterface {
         color.printTxtYellow("Select the Id for the product you wish to update: ").print(false);
         int itemID = console.nextInt();
         color.clearTxtBuffer();
-        if(!inputs.validIds(itemID)){
-            System.out.println("Invalid Id");
-            update();
-            return;
-        }
 
         console.nextLine();                 //For empty \n token from nextInt
 
@@ -78,30 +74,30 @@ public class UserInterface {
 
         try {
             inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID);
-        } catch(IllegalArgumentException e){
+        } catch(InputMismatchException e){
             color.printTxtYellow(e.getMessage()).print(true);
             return;
         }
-        System.out.println("Successfully Updated Item");
 
+        color.printTxtYellow("Successfully Updated Item").print(true);
         color.clearTxtBuffer();
     }
 
     private void delete(){
         System.out.println("\n\n" + inputs.selectRetrieve());
-        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
-        color.clearTxtBuffer();
 
+        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
         int itemIDInput = console.nextInt();
+        color.clearTxtBuffer();
 
         try {
             inputs.deleteChoice(itemIDInput);
-        } catch (IllegalArgumentException e){
+        } catch (InputMismatchException e){
             color.printTxtRed(e.getMessage()).print(true);
             return;
         }
-        System.out.println("Successfully Deleted Item");
 
+        color.printTxtRed("Successfully Deleted Item").print(true);
         color.clearTxtBuffer();
     }
 
@@ -126,12 +122,12 @@ public class UserInterface {
 
         try {
             inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
-        } catch(IllegalArgumentException e){
+        } catch(InputMismatchException e){
             color.printTxtPurple(e.getMessage()).print(true);
             return;
         }
-        System.out.println("Successfully Inserted Item");
 
+        color.printTxtPurple("Successfully Inserted Item").print(true);
         color.clearTxtBuffer();
     }
 }
