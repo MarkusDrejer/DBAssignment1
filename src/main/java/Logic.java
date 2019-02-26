@@ -30,29 +30,23 @@ public class Logic {
         return false;
     }
 
-    public boolean dbWrite(String productName, int productPrice, int productLocation, int shelfLocation){
-        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
-            return false;
-        } else {
-            String dbLocation = "L:0" + productLocation;
-            dbLocation += " S:" +shelfLocation;
-            db.insertProduct(productName, productPrice, dbLocation);
-            return true;
-        }
-    }
-
     public boolean dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
         if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
             return false;
         } else {
             String dbLocation = "L:0" + productLocation;
             dbLocation += " S:" +shelfLocation;
-            db.updateProduct(productName, productPrice, dbLocation, itemID);
+
+            if(itemID == -1){
+                db.insertProduct(productName, productPrice, dbLocation);
+            } else {
+                db.updateProduct(productName, productPrice, dbLocation, itemID);
+            }
             return true;
         }
     }
 
-    public boolean nameCheck(String toExamine){
+    private boolean nameCheck(String toExamine){
         return toExamine.length() != toExamine.replaceAll(
                 "[~'#@*+%{}<>\\[\\]|\"\\_^]", "").length();
     }

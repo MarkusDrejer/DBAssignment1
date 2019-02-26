@@ -74,7 +74,7 @@ public class UserInterface {
         if(inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID)){
             System.out.println("\nSuccessfully updated item\n");
         } else {
-            System.out.println("\nUnable to update item, Illegal characters included\n");
+            System.out.println("\nUnable to update item, Illegal characters or invalid values entered\n");
         }
     }
 
@@ -99,11 +99,6 @@ public class UserInterface {
         color.printTxtPurple("\nProduct Name: ").print(false);
         String nameInput = console.nextLine();
         color.clearTxtBuffer();
-        if(inputs.nameCheck(nameInput)){
-            System.out.println("Name contains Illegal characters\n");
-            insert();
-            return;
-        }
 
         color.printTxtPurple("Product Price (0-1000): ").print(false);
         int priceInput = console.nextInt();
@@ -117,10 +112,10 @@ public class UserInterface {
         int shelfInput = console.nextInt();
         color.clearTxtBuffer();
 
-        if(inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput)){
+        if(inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1)){
             System.out.println("Successfully inserted item");
         } else {
-            System.out.println("Failed to insert item, please choose within the range of the numbers specified");
+            System.out.println("Unable to insert item, Illegal characters or invalid values entered");
         }
     }
 }
