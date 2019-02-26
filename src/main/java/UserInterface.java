@@ -80,7 +80,9 @@ public class UserInterface {
             inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID);
         } catch(IllegalArgumentException e){
             color.printTxtYellow(e.getMessage()).print(true);
+            return;
         }
+        System.out.println("Successfully Updated Item");
 
         color.clearTxtBuffer();
     }
@@ -96,7 +98,9 @@ public class UserInterface {
             inputs.deleteChoice(itemIDInput);
         } catch (IllegalArgumentException e){
             color.printTxtRed(e.getMessage()).print(true);
+            return;
         }
+        System.out.println("Successfully Deleted Item");
 
         color.clearTxtBuffer();
     }
@@ -124,7 +128,9 @@ public class UserInterface {
             inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
         } catch(IllegalArgumentException e){
             color.printTxtPurple(e.getMessage()).print(true);
+            return;
         }
+        System.out.println("Successfully Inserted Item");
 
         color.clearTxtBuffer();
     }
