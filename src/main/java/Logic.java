@@ -7,11 +7,9 @@ public class Logic {
 
         for(Product tmp : db.selectProducts()){
             char[] modifyResult = tmp.toString().toCharArray();
-            int counter = 0;
 
-            while(modifyResult[counter] != ' '){
-                modifyResult[counter] = Character.toUpperCase(modifyResult[counter]);
-                counter++;
+            for(int i = 0; modifyResult[i] != ' '; i++){
+                modifyResult[i] = Character.toUpperCase(modifyResult[i]);
             }
 
             /*while(modifyResult[counter] != '\n'){
