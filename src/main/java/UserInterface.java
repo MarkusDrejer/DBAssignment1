@@ -49,7 +49,7 @@ public class UserInterface {
     private void update(){
         System.out.println(inputs.selectRetrieve());
 
-        color.printTxtYellow("ID for the product you which to update: ").print(false);
+        color.printTxtYellow("Select the Id for the product you wish to update: ").print(false);
         int itemID = console.nextInt();
         color.clearTxtBuffer();
 
@@ -80,7 +80,7 @@ public class UserInterface {
 
     private void delete(){
         System.out.println("\n\n" + inputs.selectRetrieve());
-        color.printTxtRed("\nPlease select the item you want to delete by choosing its Id: ").print(false);
+        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
         color.clearTxtBuffer();
 
         int itemIDInput = console.nextInt();
