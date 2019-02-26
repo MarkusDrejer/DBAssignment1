@@ -71,7 +71,7 @@ public class UserInterface {
         int newShelf = console.nextInt();
         color.clearTxtBuffer();
 
-        if(inputs.insertIntoDB(newName, newPrice, newLocation, newShelf, itemID)){
+        if(inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID)){
             System.out.println("\nSuccessfully updated item\n");
         } else {
             System.out.println("\nUnable to update item, Illegal characters included\n");
@@ -117,7 +117,7 @@ public class UserInterface {
         int shelfInput = console.nextInt();
         color.clearTxtBuffer();
 
-        if(inputs.insertIntoDB(nameInput, priceInput, locationInput, shelfInput)){
+        if(inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput)){
             System.out.println("Successfully inserted item");
         } else {
             System.out.println("Failed to insert item, please choose within the range of the numbers specified");

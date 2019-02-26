@@ -29,8 +29,8 @@ public class Logic {
         return false;
     }
 
-    public boolean insertIntoDB(String productName, int productPrice, int productLocation, int shelfLocation){
-        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation)) {
+    public boolean dbWrite(String productName, int productPrice, int productLocation, int shelfLocation){
+        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
             return false;
         } else {
             String dbLocation = "L:0" + productLocation;
@@ -40,8 +40,8 @@ public class Logic {
         }
     }
 
-    public boolean insertIntoDB(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
-        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation)) {
+    public boolean dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
+        if(price_shelfCheck(productPrice) || locationCheck(productLocation) || price_shelfCheck(shelfLocation) || nameCheck(productName)) {
             return false;
         } else {
             String dbLocation = "L:0" + productLocation;

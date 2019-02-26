@@ -46,39 +46,21 @@ public class DB {
                 "SET Product_name = '" + name + "', Product_price = " + price + ", Product_location = '" + location + "' " +
                 "WHERE Pid = " + itemID;
 
-        try {
-            Statement stmt = con.createStatement();
-            stmt.execute(sql_Update);
-            stmt.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        statementExecute(sql_Update);
     }
 
     public void deleteProduct(int itemID){
         String sql_Delete = "DELETE FROM products " +
                 "WHERE Pid = " + itemID;
 
-        try {
-            Statement stmt = con.createStatement();
-            stmt.execute(sql_Delete);
-            stmt.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        statementExecute(sql_Delete);
     }
 
     public void insertProduct(String name, int price, String location) {
         String sql_Input = "INSERT INTO products (Product_name, Product_price, Product_location) " +
                 "VALUES ('"+ name +"',"+ price +",'"+ location +"')";
 
-        try {
-            Statement stmt = con.createStatement();
-            stmt.execute(sql_Input);
-            stmt.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        statementExecute(sql_Input);
     }
 
     public int[] allIds(){
@@ -94,6 +76,7 @@ public class DB {
                 idList[counter] = rs.getInt("Pid");
                 counter++;
             }
+            stmt.close();
 
         } catch (SQLException e){
             e.printStackTrace();
@@ -117,5 +100,15 @@ public class DB {
             e.printStackTrace();
         }
         return ids;
+    }
+
+    private void statementExecute(String sql){
+        try {
+            Statement stmt = con.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
