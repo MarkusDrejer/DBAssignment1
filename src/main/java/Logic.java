@@ -2,31 +2,17 @@ public class Logic {
 
     private DB db = new DB();
 
-    /*public StringBuilder selectRetrieve(){
-        StringBuilder result = new StringBuilder();
-
-        for(Product tmp : db.selectProducts()){
-            char[] modifyResult = tmp.toString().toCharArray();
-
-            for(int i = 0; modifyResult[i] != ' '; i++){
-                modifyResult[i] = Character.toUpperCase(modifyResult[i]);
-            }
-
-            result.append(modifyResult);
-        }
-        return result;
-    }*/
-
     public StringBuilder selectRetrieve(){
         StringBuilder result = new StringBuilder();
         String modRes;
 
         for(Product tmpProduct : db.selectProducts()){
-            modRes = tmpProduct.getProduct_name().toUpperCase() + "\n" +
+            modRes = "\n" +
+                    tmpProduct.getProduct_name().toUpperCase() + "\n" +
                     "Id: " + tmpProduct.getPid() +
                     " Price: " + tmpProduct.getProduct_price() +
                     " Location: " + tmpProduct.getProduct_location() +
-                    "\n\n";
+                    "\n";
 
             result.append(modRes);
         }

@@ -35,11 +35,4 @@ public class Product {
     public int getProduct_price() {
         return Product_price;
     }
-
-    public String toString(){
-        return  Product_name + "\n" +
-                "ID: " + Pid + ", " +
-                "Price: " + Product_price + ", " +
-                "Location: " + Product_location + "\n\n";
-    }
 }

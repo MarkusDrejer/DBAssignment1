@@ -26,7 +26,7 @@ public class UserInterface {
 
                 switch (userInput) {
                     case "1":
-                        color.printTxtBlue("\n\n" + inputs.selectRetrieve()).print(true);
+                        color.printTxtBlue(inputs.selectRetrieve().toString()).print(true);
                         break;
                     case "2":
                         update();
@@ -47,7 +47,7 @@ public class UserInterface {
     }
 
     private void update(){
-        System.out.println("\n\n" + inputs.selectRetrieve());
+        System.out.println(inputs.selectRetrieve());
 
         color.printTxtYellow("ID for the product you which to update: ").print(false);
         int itemID = console.nextInt();
