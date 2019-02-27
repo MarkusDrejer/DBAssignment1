@@ -23,7 +23,7 @@ public class UserInterface {
 
             System.out.print("Please choose: ");
             userInput = console.next();
-            color.clearTxtBuffer();
+                color.clearTxtBuffer();
 
                 switch (userInput) {
                     case "1":
@@ -43,91 +43,100 @@ public class UserInterface {
                         break;
                 }
             System.out.println();
-            color.clearTxtBuffer();
+                color.clearTxtBuffer();
             }
     }
 
     private void update(){
         System.out.println(inputs.selectRetrieve());
 
+        try{
         color.printTxtYellow("Select the Id for the product you wish to update: ").print(false);
+            color.clearTxtBuffer();
         int itemID = console.nextInt();
-        color.clearTxtBuffer();
 
         console.nextLine();                 //For empty \n token from nextInt
 
         color.printTxtYellow("New Product Name: ").print(false);
+            color.clearTxtBuffer();
         String newName = console.nextLine();
-        color.clearTxtBuffer();
 
         color.printTxtYellow("New Price (0-1000); ").print(false);
+            color.clearTxtBuffer();
         int newPrice = console.nextInt();
-        color.clearTxtBuffer();
 
         color.printTxtYellow("New Location (1-3): ").print(false);
+            color.clearTxtBuffer();
         int newLocation = console.nextInt();
-        color.clearTxtBuffer();
 
         color.printTxtYellow("New Shelf (0-1000): ").print(false);
+            color.clearTxtBuffer();
         int newShelf = console.nextInt();
-        color.clearTxtBuffer();
 
-        try {
-            inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID);
+
+        inputs.dbWrite(newName, newPrice, newLocation, newShelf, itemID);
+
         } catch(InputMismatchException e){
             color.printTxtYellow(e.getMessage()).print(true);
+                console.nextLine();
             return;
         }
 
         color.printTxtYellow("Successfully Updated Item").print(true);
-        color.clearTxtBuffer();
+            color.clearTxtBuffer();
     }
 
     private void delete(){
         System.out.println("\n\n" + inputs.selectRetrieve());
 
-        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
-        int itemIDInput = console.nextInt();
-        color.clearTxtBuffer();
-
         try {
-            inputs.deleteChoice(itemIDInput);
+        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
+            color.clearTxtBuffer();
+        int itemIDInput = console.nextInt();
+
+
+        inputs.deleteChoice(itemIDInput);
+
         } catch (InputMismatchException e){
             color.printTxtRed(e.getMessage()).print(true);
+                console.nextLine();
             return;
         }
 
         color.printTxtRed("Successfully Deleted Item").print(true);
-        color.clearTxtBuffer();
+            color.clearTxtBuffer();
     }
 
     private void insert(){
         console.nextLine();                 //For empty \n token from nextInt
 
         color.printTxtPurple("\nProduct Name: ").print(false);
+            color.clearTxtBuffer();
         String nameInput = console.nextLine();
-        color.clearTxtBuffer();
-
-        color.printTxtPurple("Product Price (0-1000): ").print(false);
-        int priceInput = console.nextInt();
-        color.clearTxtBuffer();
-
-        color.printTxtPurple("Product Location (1-3): ").print(false);
-        int locationInput = console.nextInt();
-        color.clearTxtBuffer();
-
-        color.printTxtPurple("Product Shelf (0-1000): ").print(false);
-        int shelfInput = console.nextInt();
-        color.clearTxtBuffer();
 
         try {
-            inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
+        color.printTxtPurple("Product Price (0-1000): ").print(false);
+            color.clearTxtBuffer();
+        int priceInput = console.nextInt();
+
+        color.printTxtPurple("Product Location (1-3): ").print(false);
+            color.clearTxtBuffer();
+        int locationInput = console.nextInt();
+
+        color.printTxtPurple("Product Shelf (0-1000): ").print(false);
+            color.clearTxtBuffer();
+        int shelfInput = console.nextInt();
+
+
+        inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
+
         } catch(InputMismatchException e){
             color.printTxtPurple(e.getMessage()).print(true);
+                console.nextLine();
             return;
         }
 
         color.printTxtPurple("Successfully Inserted Item").print(true);
-        color.clearTxtBuffer();
+            color.clearTxtBuffer();
     }
 }
