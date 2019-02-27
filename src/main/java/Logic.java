@@ -22,12 +22,12 @@ public class Logic {
         return result;
     }
 
-    public void deleteChoice(int itemID){
+    public void deleteChoice(int itemID) throws InputMismatchException{
         validIds(itemID);
         db.deleteProduct(itemID);
     }
 
-    public void dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID){
+    public void dbWrite(String productName, int productPrice, int productLocation, int shelfLocation, int itemID) throws InputMismatchException{
         nameCheck(productName);
         price_shelfCheck(productPrice);
         locationCheck(productLocation);
@@ -53,25 +53,25 @@ public class Logic {
                 return;
             }
         }
-        throw new InputMismatchException("Invalid Id");
+        throw new InputMismatchException("Id does not exist");
     }
 
     private void nameCheck(String toExamine){
         if(toExamine.length() != toExamine.replaceAll(
-                "[~'.#@*+%{}<>\\[\\]|\"\\_^]", "").length()){
+                "[~'#@*+%{}<>\\[\\]|\"\\_^]", "").length()){
             throw new InputMismatchException("Illegal Characters");
         }
     }
 
     private void price_shelfCheck(int toExamine){
         if(toExamine < 0 || toExamine > 1000){
-            throw new InputMismatchException("Invalid Integer Input");
+            throw new InputMismatchException("Invalid Location Chosen");
         }
     }
 
     private void locationCheck(int toExamine){
         if(toExamine < 1 || toExamine > 3){
-            throw new InputMismatchException("Invalid Integer Input");
+            throw new InputMismatchException("Invalid Shelf Chosen");
         }
     }
 }

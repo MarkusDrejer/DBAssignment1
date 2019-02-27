@@ -70,7 +70,7 @@ public class UserInterface {
         int newLocation = console.nextInt();
 
         color.printTxtYellow("New Shelf (0-1000): ").print(false);
-            color.clearTxtBuffer();
+            color.clearTxtBuffer();         //For empty \n token from nextInt in menu
         int newShelf = console.nextInt();
 
 
@@ -99,7 +99,7 @@ public class UserInterface {
 
         } catch (InputMismatchException e){
             color.printTxtRed(e.getMessage()).print(true);
-                console.nextLine();
+                console.nextLine();         //For empty \n token from nextInt
             return;
         }
 
@@ -132,7 +132,7 @@ public class UserInterface {
 
         } catch(InputMismatchException e){
             color.printTxtPurple(e.getMessage()).print(true);
-                console.nextLine();
+                console.nextLine();             //For empty \n token from nextInt
             return;
         }
 
