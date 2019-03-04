@@ -63,6 +63,18 @@ public class DB {
         statementExecute(sql_Input);
     }
 
+    public void createTable(String tableName, String firstColumn, String secondColumn, String thirdColumn){
+        String sql_Create = "CREATE TABLE " + tableName + " (" +
+                "Pid int AUTO_INCREMENT, " +
+                firstColumn + " varchar(60), " +
+                secondColumn + " int, " +
+                thirdColumn + " varchar(11), " +
+                "PRIMARY KEY (Pid)" +
+                ")";
+
+        statementExecute(sql_Create);
+    }
+
     public List<Integer> allIds(){
         String sql_Ids = "SELECT Pid FROM products";
         List<Integer> idList = new ArrayList<>();

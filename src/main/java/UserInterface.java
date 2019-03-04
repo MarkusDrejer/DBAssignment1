@@ -38,6 +38,9 @@ public class UserInterface {
                     case "4":
                         insert();
                         break;
+                    case "5":
+                        createTable();
+                        break;
                     default:
                         System.out.println("\nNot a valid input");
                         break;
@@ -138,5 +141,21 @@ public class UserInterface {
 
         color.printTxtPurple("Successfully Inserted Item").print(true);
             color.clearTxtBuffer();
+    }
+
+    private void createTable(){
+        console.nextLine();
+
+        System.out.println("Table name; ");
+        String tabelName = console.nextLine();
+
+        System.out.println("First Column Name: ");
+        String firstColumn = console.nextLine();
+
+        System.out.println("Second Column Name: ");
+        String secondColumn = console.nextLine();
+
+        System.out.println("Third Column Name: ");
+        String thirdColumn = console.nextLine();
     }
 }
