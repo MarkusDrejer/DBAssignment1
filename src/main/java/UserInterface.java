@@ -14,11 +14,12 @@ public class UserInterface {
         while(!userInput.equals("/quit")) {
 
             System.out.println("Welcome to the Database program");
-            color.printTxtBlue("1. Select data\n")
-                    .printTxtYellow("2. Update data\n")
-                    .printTxtRed("3. Delete data\n")
-                    .printTxtPurple("4. Insert data\n")
-                    .printTxtBlack("Type /quit to exit\n")
+            color.printTxtBlue          ("1. Select data\n")
+                    .printTxtYellow     ("2. Update data\n")
+                    .printTxtRed        ("3. Delete data\n")
+                    .printTxtPurple     ("4. Insert data\n")
+                    .printTxtBlack      ("5. Create new table\n")
+                    .printTxtBlack      ("Type /quit to exit\n")
                     .print(false);
 
             System.out.print("Please choose: ");
@@ -45,7 +46,7 @@ public class UserInterface {
                         System.out.println("\nNot a valid input");
                         break;
                 }
-            System.out.println();
+                System.out.println();
                 color.clearTxtBuffer();
             }
     }
@@ -93,12 +94,12 @@ public class UserInterface {
         System.out.println("\n\n" + inputs.selectRetrieve());
 
         try {
-        color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
-            color.clearTxtBuffer();
-        int itemIDInput = console.nextInt();
+            color.printTxtRed("\nPlease select the item you want to delete by its Id: ").print(false);
+                color.clearTxtBuffer();
+            int itemIDInput = console.nextInt();
 
 
-        inputs.deleteChoice(itemIDInput);
+            inputs.deleteChoice(itemIDInput);
 
         } catch (InputMismatchException e){
             color.printTxtRed(e.getMessage()).print(true);
@@ -118,20 +119,20 @@ public class UserInterface {
         String nameInput = console.nextLine();
 
         try {
-        color.printTxtPurple("Product Price (0-1000): ").print(false);
-            color.clearTxtBuffer();
-        int priceInput = console.nextInt();
+            color.printTxtPurple("Product Price (0-1000): ").print(false);
+                color.clearTxtBuffer();
+            int priceInput = console.nextInt();
 
-        color.printTxtPurple("Product Location (1-3): ").print(false);
-            color.clearTxtBuffer();
-        int locationInput = console.nextInt();
+            color.printTxtPurple("Product Location (1-3): ").print(false);
+                color.clearTxtBuffer();
+            int locationInput = console.nextInt();
 
-        color.printTxtPurple("Product Shelf (0-1000): ").print(false);
-            color.clearTxtBuffer();
-        int shelfInput = console.nextInt();
+            color.printTxtPurple("Product Shelf (0-1000): ").print(false);
+                color.clearTxtBuffer();
+            int shelfInput = console.nextInt();
 
 
-        inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
+            inputs.dbWrite(nameInput, priceInput, locationInput, shelfInput, -1);
 
         } catch(InputMismatchException e){
             color.printTxtPurple(e.getMessage()).print(true);
@@ -157,5 +158,7 @@ public class UserInterface {
 
         System.out.println("Third Column Name: ");
         String thirdColumn = console.nextLine();
+
+        inputs.createTable(tabelName, firstColumn, secondColumn,thirdColumn);
     }
 }

@@ -8,7 +8,10 @@ public class DB {
 
     public DB(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://den1.mysql5.gear.host/assignmentdb1", "assignmentdb1", "Ah3vVjoep?!d");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://den1.mysql5.gear.host/assignmentdb1",
+                    "assignmentdb1",
+                    "Ah3vVjoep?!d");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,7 +66,7 @@ public class DB {
         statementExecute(sql_Input);
     }
 
-    public void createTable(String tableName, String firstColumn, String secondColumn, String thirdColumn){
+    public void dbCreateTable(String tableName, String firstColumn, String secondColumn, String thirdColumn){
         String sql_Create = "CREATE TABLE " + tableName + " (" +
                 "Pid int AUTO_INCREMENT, " +
                 firstColumn + " varchar(60), " +

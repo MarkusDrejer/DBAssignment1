@@ -47,15 +47,24 @@ public class Logic {
         locationCheck(productLocation);
         price_shelfCheck(shelfLocation);
 
-            String dbLocation = "L:0" + productLocation;
-            dbLocation += " S:" +shelfLocation;
+        String dbLocation = "L:0" + productLocation;
+        dbLocation += " S:" +shelfLocation;
 
-            if(itemID == -1){
-                db.insertProduct(productName, productPrice, dbLocation);
-            } else {
-                validIds(itemID);
-                db.updateProduct(productName, productPrice, dbLocation, itemID);
-            }
+        if(itemID == -1){
+            db.insertProduct(productName, productPrice, dbLocation);
+        } else {
+            validIds(itemID);
+            db.updateProduct(productName, productPrice, dbLocation, itemID);
+        }
+    }
+
+    public void createTable(String tablename, String firstColumn, String secondColumn, String thirdColumn) {
+        nameCheck(tablename);
+        nameCheck(firstColumn);
+        nameCheck(secondColumn);
+        nameCheck(thirdColumn);
+
+        db.dbCreateTable(tablename, firstColumn, secondColumn, thirdColumn);
     }
 
 
